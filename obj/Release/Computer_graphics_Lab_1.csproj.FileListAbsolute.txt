@@ -1,0 +1,10 @@
+H:\source\repos\Computer_graphics_Lab_1\bin\Release\Computer_graphics_Lab_1.exe.config
+H:\source\repos\Computer_graphics_Lab_1\bin\Release\Computer_graphics_Lab_1.exe
+H:\source\repos\Computer_graphics_Lab_1\bin\Release\Computer_graphics_Lab_1.pdb
+H:\source\repos\Computer_graphics_Lab_1\obj\Release\Computer_graphics_Lab_1.Form1.resources
+H:\source\repos\Computer_graphics_Lab_1\obj\Release\Computer_graphics_Lab_1.Properties.Resources.resources
+H:\source\repos\Computer_graphics_Lab_1\obj\Release\Computer_graphics_Lab_1.csproj.GenerateResource.cache
+H:\source\repos\Computer_graphics_Lab_1\obj\Release\Computer_graphics_Lab_1.csproj.CoreCompileInputs.cache
+H:\source\repos\Computer_graphics_Lab_1\obj\Release\Computer_graphics_Lab_1.exe
+H:\source\repos\Computer_graphics_Lab_1\obj\Release\Computer_graphics_Lab_1.pdb
+H:\source\repos\Computer_graphics_Lab_1\obj\Release\Computer_graphics_Lab_1.csproj.AssemblyReference.cache
