@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Computer_graphics_Lab_1
 {
-  class Brightness : MyFilters
+  class Brightness : MyFilters // Увеличение яркости
   {
     protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
     {

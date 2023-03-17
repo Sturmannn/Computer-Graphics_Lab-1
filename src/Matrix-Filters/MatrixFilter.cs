@@ -5,7 +5,6 @@ namespace Computer_graphics_Lab_1
   class MatrixFilter : MyFilters
   {
     protected float[ , ] kernel = null;
-    // MatrixFilter() { }
     public MatrixFilter() { }
     public MatrixFilter(float[,] kernel)
     {

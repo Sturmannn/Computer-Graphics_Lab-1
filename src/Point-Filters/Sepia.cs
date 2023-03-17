@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Computer_graphics_Lab_1
 {
-  class Sepia : MyFilters
+  class Sepia : MyFilters // Сепия
   {
     protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
     {

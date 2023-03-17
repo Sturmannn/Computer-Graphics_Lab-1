@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Computer_graphics_Lab_1
 {
-  class Transfer : MyFilters
+  class Transfer : MyFilters // Сдвиг на 50 пикселей влево
   {
     protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
     {

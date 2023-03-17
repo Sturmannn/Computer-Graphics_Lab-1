@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Computer_graphics_Lab_1
 {
-  class Щарра : DualKernelMF
+  class Щарра : DualKernelMF // Матричный фильтр "Щарра"
   {
     public Щарра()
     {

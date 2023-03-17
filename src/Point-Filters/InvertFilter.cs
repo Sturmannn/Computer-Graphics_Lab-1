@@ -2,7 +2,7 @@
 
 namespace Computer_graphics_Lab_1
 {
-  class InvertFilter : MyFilters
+  class InvertFilter : MyFilters // Инвертирование
   {
     protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
     {

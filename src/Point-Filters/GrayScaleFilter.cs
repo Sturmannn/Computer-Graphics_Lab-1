@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Computer_graphics_Lab_1
 {
-  class GrayScaleFilter : MyFilters
+  class GrayScaleFilter : MyFilters // Чёрно-белый
   {
     protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
     {

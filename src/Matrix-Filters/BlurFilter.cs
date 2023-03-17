@@ -1,6 +1,6 @@
 ﻿namespace Computer_graphics_Lab_1
 {
-  class BlurFilter : MatrixFilter
+  class BlurFilter : MatrixFilter // Матричный фильтр "Размытие"
   {
     public BlurFilter()
     {

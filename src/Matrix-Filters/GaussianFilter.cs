@@ -2,7 +2,7 @@
 
 namespace Computer_graphics_Lab_1
 {
-  class GaussianFilter : MatrixFilter
+  class GaussianFilter : MatrixFilter // Матричный фильтр "Гаусса"
   {
     public GaussianFilter()
     {

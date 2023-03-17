@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Computer_graphics_Lab_1
 {
-  class Prewitt : DualKernelMF
+  class Prewitt : DualKernelMF // Матричный фильтр "Прюитта"
   {
     public Prewitt()
     {

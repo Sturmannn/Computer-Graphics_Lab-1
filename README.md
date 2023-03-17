@@ -1,1 +1,1 @@
-# -omputer-Graphics_Lab-1
+# Computer-Graphics_Lab-1

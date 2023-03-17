@@ -8,7 +8,7 @@ namespace Computer_graphics_Lab_1
   {
     protected abstract Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y); // Вычисление нового цвета пикселя результирующего изображения
 
-    public Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker) // Попиксельная замена цвета для каждого фильтра
+    public virtual Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker) // Попиксельная замена цвета для каждого фильтра
     {
       Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
       for (int x = 0; x < sourceImage.Width; x++)

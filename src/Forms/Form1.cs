@@ -4,7 +4,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 
-
 namespace Computer_graphics_Lab_1
 {
   public partial class Form1 : Form
@@ -76,56 +75,103 @@ namespace Computer_graphics_Lab_1
 
     private void инверсияToolStripMenuItem1_Click(object sender, System.EventArgs e)
     {
-      //InvertFilter filter = new InvertFilter();
-      //Bitmap resultImage = filter.ProcessImage(image); // Реализация без BackgroundWorker
-      //pictureBox1.Image = resultImage;
-      //pictureBox1.Refresh();
+      /*=============== Реализация без BackgroundWorker =====================
 
-      MyFilters filter = new InvertFilter();
-      backgroundWorker1.RunWorkerAsync(filter);
+      InvertFilter filter = new InvertFilter();
+      Bitmap resultImage = filter.ProcessImage(image);
+      pictureBox1.Image = resultImage;
+      pictureBox1.Refresh();
+      */
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new InvertFilter();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void размытиеToolStripMenuItem1_Click(object sender, System.EventArgs e)
     {
-      MyFilters filter = new BlurFilter();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new BlurFilter();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void размытиеГауссаToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      MyFilters filter = new GaussianFilter();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new GaussianFilter();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void чёрнобелыйToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      MyFilters filter = new GrayScaleFilter();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new GrayScaleFilter();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void сепияToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      MyFilters filter = new Sepia();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Sepia();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void увеличениеЯркостиToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      MyFilters filter = new Brightness();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Brightness();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void собельToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      MyFilters filter = new Sobel();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Sobel();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void повышениеРезкостиToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      MyFilters filter = new SharpenMore();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new SharpenMore();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
+
+    //private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+    //{
+    //  //File.Delete(path);
+    //  if (indOfPict > -1)
+    //  {
+
+    //    Image saveImage = (Image)images[indOfPict];
+    //    pictureBox1.Image.Dispose();
+    //    pictureBox1.Image = null;
+    //    File.Delete(path);
+    //    //saveImage.Save(path);
+    //    //using (FileStream fs = new FileStream(path, FileMode.Create))
+    //    {
+    //      //saveImage.Save(fs, ImageFormat.Jpeg);
+    //      //saveImage.Save()
+    //      //saveImage.Save(fs, ImageFormat.Jpeg);
+    //      //pictureBox1.Image.Save(fs, ImageFormat.Jpeg);
+    //    };
+    //  }
+    //}
 
     private void сохранитьКакToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
@@ -151,7 +197,7 @@ namespace Computer_graphics_Lab_1
               using (FileStream fs = (FileStream)dialog.OpenFile())
               {
                 if (dialog.FilterIndex == 1) pictureBox1.Image.Save(fs, ImageFormat.Jpeg);
-                //else if (dialog.FilterIndex == 2) pictureBox1.Image.Save(fs, ImageFormat.Png);
+                else if (dialog.FilterIndex == 2) pictureBox1.Image.Save(fs, ImageFormat.Png);
                 //else if (dialog.OverwritePrompt == true)
                 //{
                 //  Image saveImage = images[indOfPict];
@@ -162,7 +208,7 @@ namespace Computer_graphics_Lab_1
                 //  //pictureBox1.Image.Save(dialog.FileName);
                 //}
                 else MessageBox.Show("Вы что-то делаете не так! Попробуйте заново!");
-              }
+              };
             }
         }
       }
@@ -170,7 +216,7 @@ namespace Computer_graphics_Lab_1
 
     private void назадToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      if (indOfPict != 0)
+      if (indOfPict > 0)
       {
         indOfPict--;
         pictureBox1.Image = images[indOfPict];
@@ -180,7 +226,7 @@ namespace Computer_graphics_Lab_1
 
     private void вперёдToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      if (indOfPict < count && indOfPict >= 0)
+      if (indOfPict < count && indOfPict > -1)
       {
         indOfPict++;
         pictureBox1.Image = images[indOfPict];
@@ -198,48 +244,116 @@ namespace Computer_graphics_Lab_1
       images = result;
     }
 
-    private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      ////File.Delete(path);
-      //Image saveImage = (Image)images[indOfPict];
-      //pictureBox1.Image.Dispose();
-      //pictureBox1.Image = null;
-      //using (FileStream fs = new FileStream(path, FileMode.Create))
-      //{
-      //  //saveImage.Save(path);
-      //  saveImage.Save(fs, ImageFormat.Jpeg);
-      //  //pictureBox1.Image.Save(fs, ImageFormat.Jpeg);
-      //};
-    }
 
     private void переносToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      MyFilters filter = new Transfer();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Transfer();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void поворотToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      MyFilters filter = new Rotate();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Rotate();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void щарраToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      MyFilters filter = new Щарра();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Щарра();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void прюиттToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      MyFilters filter = new Prewitt();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Prewitt();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
 
     private void серыйМирToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      MyFilters filter = new GreyWorld();
-      backgroundWorker1.RunWorkerAsync(filter);
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new GreyWorld();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void Form1_KeyDown(object sender, KeyEventArgs e)
+    {
+     /* Этот блок кода для горячих клавиш CTRL + Z и CTRL+SHIFT + Z РАБОТАЕТ, но криво :(
+      if (e.KeyValue == (char)Keys.ControlKey)
+        KeyDown += (s, a) =>
+        {
+          if (a.KeyValue == (char)Keys.ShiftKey)
+            KeyDown += (o, p) =>
+            {
+              {
+                if (p.KeyValue == (char)Keys.Z)
+                  //вперёдToolStripMenuItem.PerformClick();
+                вперёдToolStripMenuItem_Click(вперёдToolStripMenuItem, null);
+              }
+            };
+        };
+
+      if (e.KeyValue == (char)Keys.ControlKey)
+        KeyDown += (s, a) =>
+        {
+          if (a.KeyValue == (char)Keys.Z)
+            //назадToolStripMenuItem.PerformClick();
+            назадToolStripMenuItem_Click(назадToolStripMenuItem, null);
+        };
+     */
+      if(e.KeyValue == (char)Keys.Z) назадToolStripMenuItem_Click(назадToolStripMenuItem, null);
+      if (e.KeyValue == (char)Keys.X) вперёдToolStripMenuItem_Click(вперёдToolStripMenuItem, null);
+      if (e.KeyValue == (char)Keys.S) сохранитьКакToolStripMenuItem_Click(сохранитьКакToolStripMenuItem, null);
+    }
+
+    private void волныToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Waves();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void эффектСтеклаToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Glass_effect();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void расширениеToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Dilation();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void сужениеToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Erosion();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
     }
   }
 }

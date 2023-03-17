@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace Computer_graphics_Lab_1
 {
-  class Emboss : MatrixFilter // Фильтр класса "Тиснение"
+  class SharpenMore : MatrixFilter // Матричный фильтр резкости
   {
-    public Emboss()
+    public SharpenMore()
     {
       SetKernel();
     }
+
     protected void SetKernel()
     {
-      kernel = new float[3, 3] { { 0, 1, 0 },
-                                 { 1, 0, -1 },
+      kernel = new float[3, 3] { { 0, -1, 0 },
+                                 { -1, 5, -1 },
                                  { 0, -1, 0 } };
     }
   }
