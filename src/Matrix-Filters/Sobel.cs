@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-
-namespace Computer_graphics_Lab_1
+﻿namespace Computer_graphics_Lab_1
 {
   class Sobel : DualKernelMF // Матричный фильтр "Собеля"
   {

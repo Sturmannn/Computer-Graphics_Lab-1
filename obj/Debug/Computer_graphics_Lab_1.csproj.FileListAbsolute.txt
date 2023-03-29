@@ -18,3 +18,4 @@ H:\source\repos\Computer-Graphics_Lab-1\obj\Debug\Computer_graphics_Lab_1.csproj
 H:\source\repos\Computer-Graphics_Lab-1\obj\Debug\Computer_graphics_Lab_1.csproj.CoreCompileInputs.cache
 H:\source\repos\Computer-Graphics_Lab-1\obj\Debug\Computer_graphics_Lab_1.exe
 H:\source\repos\Computer-Graphics_Lab-1\obj\Debug\Computer_graphics_Lab_1.pdb
+H:\source\repos\Computer-Graphics_Lab-1\obj\Debug\Computer_graphics_Lab_1.SetKernel.resources

@@ -45,13 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Forms\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Forms\Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Matrix-Filters\BlurFilter.cs" />
-    <Compile Include="src\Matrix-Filters\Math-Morphology.cs" />
-    <Compile Include="src\Morfological-Filters\Erosion.cs" />
+    <Compile Include="src\Morfological-Filters\Math-Morphology.cs" />
+    <Compile Include="src\Point-Filters\Auto-Levels.cs" />
     <Compile Include="src\Point-Filters\Brightness.cs" />
-    <Compile Include="src\Morfological-Filters\Dilation.cs" />
     <Compile Include="src\Matrix-Filters\DualKernelMF.cs" />
-    <Compile Include="src\Matrix-Filters\Emboss.cs" />
     <Compile Include="src\Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +70,7 @@
     <Compile Include="src\Matrix-Filters\MatrixFilter.cs" />
     <Compile Include="src\MyFilters.cs" />
     <Compile Include="src\Matrix-Filters\Prewitt.cs" />
+    <Compile Include="src\Point-Filters\MedianFilter.cs" />
     <Compile Include="src\Point-Filters\Waves.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +92,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="src\Forms\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -8,11 +8,10 @@ namespace Computer_graphics_Lab_1
 {
   public partial class Form1 : Form
   {
-    //Bitmap image; // Создание объект Bitmap, который в будущем будет нашей картинкой
-    static string path; // Для перезаписи того же файла
+    //static string path; // Для перезаписи того же файла
     static int size = 5;
     static int count = 0; // Вспомогательный счётчик изображений для реализации "Вперёд" 
-    Bitmap[] images = new Bitmap[size];
+    Bitmap[] images = new Bitmap[size]; // Создание объект Bitmap, который в будущем будет нашей картинкой
     int indOfPict = -1; // Индекс массива картин (текущее состояние в массиве images)
     public Form1()
     {
@@ -30,25 +29,25 @@ namespace Computer_graphics_Lab_1
           count++;
           images[indOfPict] = new Bitmap(dialog.FileName);
 
-          path = Path.GetFullPath(dialog.FileName);
+          //path = Path.GetFullPath(dialog.FileName); // для перезаписи при сохранении того же файла (не работает)
           pictureBox1.Image = images[indOfPict];
           pictureBox1.Refresh();
         }
       }
     }
 
-    private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+    protected void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
     {
-
       Bitmap newImage = ((MyFilters)e.Argument).ProcessImage(images[indOfPict], backgroundWorker1);
 
       if (backgroundWorker1.CancellationPending != true)
       {
-        if (indOfPict == size - 1)  Repacking();
-        count = indOfPict + 1;
+        if (indOfPict == size - 1) Repacking();
+        if (count - indOfPict == 1) count++;
         indOfPict++;
         images[indOfPict] = newImage;
       }
+      else count--;
     }
 
     private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
@@ -64,7 +63,7 @@ namespace Computer_graphics_Lab_1
         pictureBox1.Refresh();
       }
       progressBar1.Value = 0;
-      for (int i = count; i > indOfPict; i--)
+      for (int i = count - 1; i > indOfPict; i--)
         images[i] = null;
     }
 
@@ -226,7 +225,7 @@ namespace Computer_graphics_Lab_1
 
     private void вперёдToolStripMenuItem_Click(object sender, System.EventArgs e)
     {
-      if (indOfPict < count && indOfPict > -1)
+      if (indOfPict < count - 1)
       {
         indOfPict++;
         pictureBox1.Image = images[indOfPict];
@@ -292,32 +291,44 @@ namespace Computer_graphics_Lab_1
 
     private void Form1_KeyDown(object sender, KeyEventArgs e)
     {
-     /* Этот блок кода для горячих клавиш CTRL + Z и CTRL+SHIFT + Z РАБОТАЕТ, но криво :(
-      if (e.KeyValue == (char)Keys.ControlKey)
-        KeyDown += (s, a) =>
-        {
-          if (a.KeyValue == (char)Keys.ShiftKey)
-            KeyDown += (o, p) =>
-            {
-              {
-                if (p.KeyValue == (char)Keys.Z)
-                  //вперёдToolStripMenuItem.PerformClick();
-                вперёдToolStripMenuItem_Click(вперёдToolStripMenuItem, null);
-              }
-            };
-        };
+      /* Этот блок кода для горячих клавиш CTRL + Z и CTRL+SHIFT + Z РАБОТАЕТ, но криво :(
+       if (e.KeyValue == (char)Keys.ControlKey)
+         KeyDown += (s, a) =>
+         {
+           if (a.KeyValue == (char)Keys.ShiftKey)
+             KeyDown += (o, p) =>
+             {
+               {
+                 if (p.KeyValue == (char)Keys.Z)
+                   //вперёдToolStripMenuItem.PerformClick();
+                 вперёдToolStripMenuItem_Click(вперёдToolStripMenuItem, null);
+               }
+             };
+         };
 
-      if (e.KeyValue == (char)Keys.ControlKey)
-        KeyDown += (s, a) =>
-        {
-          if (a.KeyValue == (char)Keys.Z)
-            //назадToolStripMenuItem.PerformClick();
-            назадToolStripMenuItem_Click(назадToolStripMenuItem, null);
-        };
-     */
-      if(e.KeyValue == (char)Keys.Z) назадToolStripMenuItem_Click(назадToolStripMenuItem, null);
-      if (e.KeyValue == (char)Keys.X) вперёдToolStripMenuItem_Click(вперёдToolStripMenuItem, null);
-      if (e.KeyValue == (char)Keys.S) сохранитьКакToolStripMenuItem_Click(сохранитьКакToolStripMenuItem, null);
+       if (e.KeyValue == (char)Keys.ControlKey)
+         KeyDown += (s, a) =>
+         {
+           if (a.KeyValue == (char)Keys.Z)
+             //назадToolStripMenuItem.PerformClick();
+             назадToolStripMenuItem_Click(назадToolStripMenuItem, null);
+         };
+      */
+      if (e.KeyValue == (char)Keys.Z)
+      {
+        назадToolStripMenuItem_Click(назадToolStripMenuItem, null);
+        return;
+      }
+      if (e.KeyValue == (char)Keys.X)
+      {
+        вперёдToolStripMenuItem_Click(вперёдToolStripMenuItem, null);
+        return;
+      }
+      if (e.KeyValue == (char)Keys.S)
+      {
+        сохранитьКакToolStripMenuItem_Click(сохранитьКакToolStripMenuItem, null);
+        return;
+      }
     }
 
     private void волныToolStripMenuItem_Click(object sender, EventArgs e)
@@ -354,6 +365,58 @@ namespace Computer_graphics_Lab_1
         MyFilters filter = new Erosion();
         backgroundWorker1.RunWorkerAsync(filter);
       }
+    }
+
+    private void открытиеToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Opening();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void закрытиеToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Closing();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void gradToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Grad();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void медианныйToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new MedianFilter();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void линейноеРастяжениеToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (indOfPict > -1)
+      {
+        MyFilters filter = new Auto_Levels();
+        backgroundWorker1.RunWorkerAsync(filter);
+      }
+    }
+
+    private void задатьСтруктурныйЭлементToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      SetKernel f2;
+      f2 = new SetKernel();
+      f2.ShowDialog();
     }
   }
 }

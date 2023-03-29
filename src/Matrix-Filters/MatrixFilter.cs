@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace Computer_graphics_Lab_1
 {
@@ -29,9 +30,9 @@ namespace Computer_graphics_Lab_1
           resultB += neighborColor.B * kernel[j + radiusX, i + radiusY];
         }
       return Color.FromArgb(
-        Clamp((int)resultR, 0, 255),
-        Clamp((int)resultG, 0, 255),
-        Clamp((int)resultB, 0, 255)
+        Clamp(Math.Abs((int)resultR), 0, 255),
+        Clamp(Math.Abs((int)resultG), 0, 255),
+        Clamp(Math.Abs((int)resultB), 0, 255)
         );
     }
   }

@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System.ComponentModel;
 
-
 namespace Computer_graphics_Lab_1
 {
   abstract class MyFilters

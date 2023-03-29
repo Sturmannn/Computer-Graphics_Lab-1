@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Computer_graphics_Lab_1
+﻿namespace Computer_graphics_Lab_1
 {
   class Щарра : DualKernelMF // Матричный фильтр "Щарра"
   {
